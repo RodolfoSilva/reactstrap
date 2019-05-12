@@ -28,6 +28,8 @@ const defaultProps = {
   type: 'text'
 };
 
+const noop = () => {};
+
 class Input extends React.Component {
   constructor(props) {
     super(props);
@@ -75,6 +77,9 @@ class Input extends React.Component {
 
     if (plaintext) {
       formControlClass = `${formControlClass}-plaintext`;
+      if (attributes.onChange === undefined) {
+        attributes.onChange = noop;
+      }
       Tag = tag || 'input';
     } else if (fileInput) {
       formControlClass = `${formControlClass}-file`;
